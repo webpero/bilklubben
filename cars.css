@@ -1,0 +1,165 @@
+﻿/* Bilklubben AS - Prosjektoppgave NTNU V2017 i Webutvikling 2
+ * Forutsetter bruk av Bootstrap 3
+ *
+ * Per Olav Mariussen
+ * 22.05.2017
+ */
+ 
+.margin-top {
+	margin-top: 60px;
+}
+.header-right {
+	margin-left: 10px;
+}
+@media screen and (min-width: 768px) {
+	.header-right {
+		float: right;
+	}
+}
+small {
+	white-space: nowrap;
+}
+.navbar-nav > li > button {
+	margin: 8px;
+}
+.navbar-default .navbar-nav>li>a {
+	color: #555;
+}
+.jumbotron .pull-right {
+	font-size: 65%;
+}
+@media screen and (min-width: 768px) {
+	.container .jumbotron, .container-fluid .jumbotron {
+		padding: 15px;
+	}
+}
+.bg-melding{
+	margin: 10px 0 0;
+	padding: 5px;
+	display: none;
+}
+
+/* Kartet */
+#map {
+	margin-top: 15px;
+	height: 600px;
+}
+
+/* Tabell over biler */
+#cartable > tbody tr:hover {
+	background: #ccc;
+	cursor: pointer;
+}
+
+/* Tabell over tilgjengelighet */
+#caravail.table-condensed th, #caravail.table-condensed td {
+	padding: 0px;
+}
+#caravail th {
+	font-weight: normal;
+	text-align: center;
+}
+#caravail th.nymnd, #caravail td.nymnd  {
+	border-left: 1px solid #333;
+}
+#caravail th.nymnd {
+	font-weight: bold;
+}
+#caravail > tbody tr:hover {
+	font-weight: bold;
+	background: #ccc;
+	cursor: pointer;
+}
+#caravail td.car-info {
+	padding-left: 3px;
+	min-width: 260px;
+	vertical-align: middle;
+}
+#caravail .car-booked {
+	width: 26px;
+	height: 26px;
+	background: red;
+	margin: 1px;
+}
+#caravail .car-free {
+	width: 26px;
+	height: 26px;
+	background: green;
+	margin: 1px;
+	cursor: pointer;
+}
+#caravail .car-free:hover, #caravail .car-booking:hover {
+	border: 1px solid #333;
+	box-shadow: 0px 0px 5px 2px #ddd inset;
+}
+#caravail .car-booking {
+	background: yellow;
+	cursor: initial;
+}
+
+/* Tabeller som skal være sorterbare */
+.tablesorter th {
+	cursor: pointer;
+}
+
+/* Dialog for leie av bil */
+.no-user, #leie-flere-dager, #innskudd {
+	display: none;
+}
+
+/* Side for meldemsdata */
+#step1 {
+}
+#step2, #step3 {
+	display: none;
+}
+#member-form, #member-bookings, #member-history, #member-report, #member-tip, #member-end {
+	display: none;
+}
+#member-bookings .well {
+	margin-top: 10px;
+}
+#table-bookings > tbody tr, #table-history > tbody tr {
+	cursor: pointer;
+}
+#credit_cards img {
+	height: 34px;
+}
+.form-tom-linje {
+	height: 34px;
+	margin: 0px;
+}
+.transparent {
+    opacity: 0.2;
+}
+
+/* Nyheter og Om */
+#row2 {
+	margin-top: 30px;
+}
+.article {
+	background: linear-gradient(to bottom right, #f9f9f9, #e9e9e9);
+	border-radius: 5px;
+	margin: 5px;
+	padding: 10px;
+}
+.article img {
+	padding-top: 15px;
+	padding-right: 15px;
+}
+.img-main {
+	margin-top: 50px;
+}
+.byline {
+	color: #555;
+	border-top: 1px solid #555;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+.ingress {
+	font-weight: bold;
+	text-align: justify;
+}
+.well h3 {
+	margin-top: 0;
+}

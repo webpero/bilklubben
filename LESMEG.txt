@@ -1,0 +1,108 @@
+BILKLUBBEN AS - Prosjektoppgave Webutvikling2 NTNU V2017
+Per Olav Mariussen
+22.05.2017
+
+
+1. BESKRIVELSE AV LØSNINGEN 
+Jeg har laget en fungerende prototype som kan videreutvikles til en komplett løsning. 
+Funksjonalitet som er på plass:
+* Innsalg for nye brukere og mulighet for å bli medlem av klubben (inkludert opprette bruker) og bestille bil umiddelbart
+* Informasjon om alle biler
+* "Forsiden" som viser kart over Stavanger og plassering av ledige biler. Bil kan bestilles ved å klikke i kartet.
+* "Finn bil" som gir mulighet til å bestille bil fram i tid og over flere dager.
+* "Medlem" for håndtering av medlemsskap: 
+	* Endring av profilinfo og abonnement, inkludert håndtering av kredittkort for månedlig trekk.
+	  Kredittkortinfo lagres i databasen, borsett fra CVV som bare trengs for å verfisere kortholder første gang.
+	* Visning av bestillinger med mulighet for avbestilling (dialog uten handling).
+	* Historikk med mulighet for rapportering av feil (dialog uten handling).
+	* Tips en venn (input-form som ikke lagres).
+	* avslutning av abonnement (input-form som ikke lagres). 
+* "Siste nytt" som viser publisering av nyheter (ikke laget publiseringsløsning).
+* "Om Bilklubben" som viser relevant info om klubben og kontaktinfo.
+
+RABATTORDNINGER
+Jeg har gjort klart for implementering av eventuelle rabattordninger ved å opprette en databasetabell "car_price".
+Her kan man legge inn en faktor for rabatt (f.eks. 0.9 for 10% rabatt) eller tillegg (f.eks. 1.1 for 10% tillegg) knyttet til antall dager, hverdager, helgedager og høytid.
+I tillegg må man opprette en kalenderfunksjon som holder orden på type dager.
+Da kan man multiplisere døgnleien for aktuell bil med faktor for antall dager, hverdag, helgedag og høytid.
+
+
+2. ARKITEKTUR og RAMMEVERK
+På serversiden er det brukt PHP og MySQL. Under utvikling har jeg benyttet WAMP32.
+Som klientrammeverk har jeg valgt Bootstrap og jQuery (lastes fra CDN for optimal ytelse).
+I tillegg bruker jeg Google Maps Javascript API.
+
+Jeg benytter PHP til tjenestene og til å håndtere brukersesjon for sikkerhet knyttet til pålogget bruker.
+Jeg har som hovedregel valgt å ikke generere HTML i PHP på server.
+
+Jeg benytter istedenfor jQuery og AJAX for å skape et mer dynamisk nettsted.
+Fordelene med dette er mange:
+* Sidene genereres raskere
+* Data kan lastes ved behov
+* Man kan lettere bytte serverplattform
+
+Alle AJAX-kall er asynkrone, og da kan man få problemer med at data ikke er tilgjengelig når man trenger dem.
+Jeg har løst dette ved hjelp av callback-funksjoner, og i ett tilfelle lytting på event når AJAX-kall er avsluttet.
+En annen løsning kunne vært å lagt om til objektorientert Javascript hvor funksjoner og data ligger i samme objekt.
+Dette vil være min anbefaling for eventuelt videre arbeid.
+
+Jeg har valgt å benytte to jQuery-plugins og åpen kildekode for håndtering av:
+*Sortering i tabeller (Tablesorter)
+*Validering av kredittkort (Payform)
+
+Les-tjenestene tar innparametere via GET og returnerer alle data som JSON.
+Tjenestene er navngitt get-*
+
+Skriv-tjenestene tar innparametere via POST og returnerer oppdaterte data som JSON.
+Tjenestene er navngitt set-*
+
+Det er lagt inn beskyttelse mot XSS og SQL-injection i PHP-koden til tjenestene.
+
+Alle nettsteder med pålogging bør automatisk benytte HTTPS.
+Jeg har ikke kontroll på NTNUs webserver for å få satt opp dette :-)
+Jeg har lagt inn en redirect til https i index.html og benytter https i HOME-URL.
+
+
+3. FILOVERSIKT
+
+Tjenester:
+get-cars.php				Hent info om alle biler
+get-cars-pos.php			Hent info om ledige bilers posisjon
+get-cars-booked.php			Hent info om alle framtidige bookinger (krever gyldig brukersesjon)
+set-car-booking.php			Opprett bestilling på bil (krever gyldig brukersesjon)
+get-userdata.php			Hent ut alle data om bruker (krever gyldig brukersesjon)
+get-user-bookings.php		Hent pålogget brukers bookinger (krever gyldig brukersesjon)
+get-user-history.php		Hent pålogget brukers historikk (krever gyldig brukersesjon)
+set-userdata.php			Opprett/oppdater brukerdata (krever gyldig brukersesjon)
+
+6 HTML-sider:
+index.html					Gjør en redirect til https://stud.iie.ntnu.no/~peroma/wtr/prosjekt/index.php
+index.php					Hovedsiden
+finn.php					Finn bil fram i tid
+medlem.php					Medlemsside
+siste.php					Nyheter
+om.php						Om Bilklubben AS
+
+PHP-sider for håndtering av brukersesjonen:
+login.php					Oppretter brukersesjon (hvis gyldig pålogging)
+logout.php					Avslutter brukersesjon
+
+PHP-sider som inkluderes ved behov:
+consts.php					PHP konstanter felles for hele prosjektet
+head.php					Felles header for alle sider (CSS ++)
+navbar.php					Felles navigasjonen for alle sider (aktiv side settes av Javascript)
+tail.php					Avsluttende kode på alle sider (JavaScript ++)
+modal-login.php				Modal-dialog (Bootstrap) for innlogging
+modal-bilinfo.php			Modal-dialog (Bootstrap) for å vise all informasjon om en bil
+modal-leiebil.php			Modal-dialog (Bootstrap) for å leie bil
+modal-avbestille-bil.php	Modal-dialog (Bootstrap) for å avbestille bil
+modal-rapportere-bil.php	Modal-dialog (Bootstrap) for å sende inn rapport på en bil
+
+Andre viktige ressurser:
+car.css						CSS for nettstedet
+car.js						Javascript for nettstedet
+jquery.tablesorter.min.js	jQuery plugin Tablesorter
+jquery.payform.min.js		jQuery plugin Payform (kredittkort)
+
+Bilder som er publisert og kan byttes ut, ligger på katalogen /img
+Bilder som er en del av løsningen ligger på rot-katalogen
