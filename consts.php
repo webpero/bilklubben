@@ -10,5 +10,5 @@
 	const _ERROR = "]";
 
 	//Home-URL for prosjektet
-	const HOME_URL = "https://stud.iie.ntnu.no/~peroma/wtr/prosjekt/index.php";
+	const HOME_URL = "https://bilklubbenas.heroku.com/index.php";
 ?>
