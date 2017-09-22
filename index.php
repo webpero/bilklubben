@@ -140,7 +140,7 @@
 	<!-- Init av siden -->
 	
 	<!-- Google Maps JavaScript API - API-key er generert fra kraftwerk68@gmail.com -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUb7lLbMRJkweAbcXiS3ejObHqnlDkKOQ&callback=initMap">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL58Of35Vjc2CeUAbSPXc1zd1ugUmYL4Q&callback=initMap">
 		//Kaller initMap() som callback
 	</script>
 	<script>
