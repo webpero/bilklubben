@@ -4,7 +4,6 @@
 	
 	//Databaseoppkobling 
 	$dbopts = parse_url(getenv('DATABASE_URL'));
-	echo $dbopts["path"];
 	/*$app->register(new Herrera\Pdo\PdoServiceProvider(),
                array(
                    'pdo.dsn' => 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"],
