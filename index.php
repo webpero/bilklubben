@@ -73,7 +73,7 @@
 					<tbody>
 	<?php
 	/*** List ut tilgjengelige biler ***/
-	$con = mysqli_connect(DB[0], DB[1], DB[2], DB[3]);    
+	/*$con = mysqli_connect(DB[0], DB[1], DB[2], DB[3]);    
 	if ( $con )
 	{
 		$sql = "SELECT * FROM car_cars";
@@ -108,7 +108,7 @@
 	else
 	{
 		echo ERROR_."Databasefeil: Kan ikke koble til database"._ERROR;
-	}
+	}*/
 ?>
 					</tbody>
 				</table>		
