@@ -73,6 +73,7 @@
 					<tbody>
 	<?php
 	/*** List ut tilgjengelige biler ***/
+	echo $dbopts["path"];
 	/*$con = mysqli_connect(DB[0], DB[1], DB[2], DB[3]);    
 	if ( $con )
 	{
